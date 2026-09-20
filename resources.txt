@@ -1,0 +1,6 @@
+1,Study Room 111,3
+2,Study Room 112,2
+3,Projector B3,1
+4,Laptop Cart,5
+5,Conference Room B,1
+ 
