@@ -75,3 +75,14 @@ int Waitlist::getSize() const {
     return size;
 }
  
+int Waitlist::countForResource(int resourceID) const {
+    int matches = 0;
+    WaitlistNode* current = front;
+    while (current != nullptr) {
+        if (current->data.resourceID == resourceID) {
+            matches++;
+        }
+        current = current->next;
+    }
+    return matches;
+}

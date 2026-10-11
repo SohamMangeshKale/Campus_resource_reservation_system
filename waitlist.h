@@ -32,6 +32,8 @@ public:
  
     bool isEmpty() const;
     int getSize() const;
+
+    int countForResource(int resourceID) const;
 };
  
 #endif

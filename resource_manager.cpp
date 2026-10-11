@@ -96,3 +96,10 @@ int ResourceManager::getCount() const {
     return count;
 }
  
+Resource ResourceManager::getResourceAt(int index) const {
+    if (index < 0 || index >= count) {
+        Resource empty = {-1, "INVALID", 0, 0};
+        return empty;
+    }
+    return resources[index];
+}

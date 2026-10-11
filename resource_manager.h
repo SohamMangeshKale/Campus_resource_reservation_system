@@ -22,6 +22,8 @@ public:
 	bool decreaseAvailability(int resourceID, int qty);
 	bool increaseAvailability(int resourceID, int qty);
 	int getCount() const;
+
+	Resource getResourceAt(int index) const;
 };
 
 
