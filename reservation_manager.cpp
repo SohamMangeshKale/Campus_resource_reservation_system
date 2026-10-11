@@ -1,9 +1,11 @@
 #include "reservation_manager.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 ReservationManager :: ReservationManager(){
 	head = nullptr;
-	nextReservation = 1;
+	nextReservationID = 1;
 	}
 	
 ReservationManager::~ReservationManager() {
@@ -123,6 +125,52 @@ Reservation* ReservationManager::findReservation(int reservationID) {
             return current;
         }
         current = current->next;
+    }
+
+    bool ReservationManager::loadReservationsFromFile(const std::string& filename,ResourceManager& rm, Waitlist& wl) {
+    
+        std::ifstream file(filename);
+        if (!file.is_open()) {
+            std::cout << "No existing reservations file found (" << filename << ").\n";
+            return false;
+        }
+
+        std::string line;
+        int loaded = 0;
+        while (std::getline(file, line)) {
+            if (line.empty()) continue;
+
+            std::stringstream ss(line);
+            std::string resIDStr, studentName, qtyStr;
+
+            std::getline(ss, resIDStr, ',');
+            std::getline(ss, studentName, ',');
+            std::getline(ss, qtyStr, ',');
+
+            if (resIDStr.empty() || studentName.empty() || qtyStr.empty()) continue;
+
+            int resourceID = std::stoi(resIDStr);
+            int quantity = std::stoi(qtyStr);
+
+            createReservation(resourceID, studentName, quantity, rm, wl);
+            loaded++;
+        }
+
+        file.close();
+        std::cout << "Loaded " << loaded << " existing reservation(s) from " << filename << ".\n";
+        return true;
+    }
+
+    int ReservationManager::countReservationsForResource(int resourceID) const {
+        int matches = 0;
+        Reservation* current = head;
+        while (current != nullptr) {
+            if (current->resourceID == resourceID) {
+                matches++;
+            }
+            current = current->next;
+        }
+        return matches;
     }
     return nullptr;
 }
