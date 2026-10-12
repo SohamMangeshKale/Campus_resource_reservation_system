@@ -126,6 +126,8 @@ Reservation* ReservationManager::findReservation(int reservationID) {
         }
         current = current->next;
     }
+    return nullptr;
+}
 
     bool ReservationManager::loadReservationsFromFile(const std::string& filename,ResourceManager& rm, Waitlist& wl) {
     
@@ -172,5 +174,4 @@ Reservation* ReservationManager::findReservation(int reservationID) {
         }
         return matches;
     }
-    return nullptr;
-}
+  

@@ -1,9 +1,9 @@
-ifndef RESOURCE_MANAGER_H
+#ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
 
 #include "structures.h"
-#inclucde <string>
+#include <string>
 
 
 const int MAX_RESOURCES = 100;
@@ -14,9 +14,9 @@ private:
 	int count;
 	
 public:
-	ResourcesManager();
-	bool loadFormFile(const std::string& filename);
-	void displayALLResources() const;	
+	ResourceManager();
+	bool loadFromFile(const std::string& filename);
+	void displayAllResources() const;	
 	void displayAvailability(int resourceID) const;
 	Resource* findResource(int resourceID);
 	bool decreaseAvailability(int resourceID, int qty);

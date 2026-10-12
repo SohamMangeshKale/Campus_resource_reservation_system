@@ -39,8 +39,6 @@ public:
     Reservation* findReservation(int reservationID);
  
     int getActiveCount() const;
-    bool loadReservationsFromFile(const std::string& filename, ResourceManager& rm, Waitlist& wl);
-    int countReservationsForResource(int resourceID) const;
     
     // Expected format per lineis resourceID,studentName,quantity
     // Each line is run through the normal createReservation() flow
